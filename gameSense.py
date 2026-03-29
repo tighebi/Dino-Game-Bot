@@ -4,10 +4,10 @@ import time
 pyautogui.time.sleep(3)
 
 frame = 0
+last_time = time.time()
 
 while "Dino running":
     frame += 1
-    last_time = time.time()
     x, y = pyautogui.position()
     rgb = pyautogui.pixel(x,y)
 
@@ -16,5 +16,8 @@ while "Dino running":
     if brightness < 128:
         pyautogui.hotkey("space")
     
+    print("Run or jump")
     if frame % 200 == 0:
         print(f"fps: {frame/(time.time()-last_time)}")
+        last_time = time.time()
+        frame = 0
