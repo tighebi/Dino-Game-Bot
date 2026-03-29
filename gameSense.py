@@ -15,13 +15,13 @@ with mss.mss() as sct:
         frame += 1
         x, y = pyautogui.position()
 
-        monitor = {"top": y-c, "left": x-c, "width": 2*c, "height": 2*c}
+        monitor = {"top": y-c, "left": x-c, "width": 4*c, "height": 2*c}
         img = np.array(sct.grab(monitor))
 
         if (img[:,:,:3].mean(axis=2) < 128).any():
             pyautogui.hotkey("space")
         
-        if frame == 500:
+        if frame % 1000 == 0: 
             print(f"fps: {frame/(time.time()-last_time)}")
             last_time = time.time()
-            frame = 0            
+            frame = 0
